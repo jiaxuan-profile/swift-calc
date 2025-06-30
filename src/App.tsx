@@ -8,6 +8,7 @@ import { GraphingCalculator } from './components/calculators/GraphingCalculator'
 import { FinancialCalculator } from './components/calculators/FinancialCalculator';
 import { ConversionCalculator } from './components/calculators/ConversionCalculator';
 import { History } from './components/History';
+import BoltBadge from './components/BoltBadge';
 
 function App() {
   const calculator = useCalculator();
@@ -60,16 +61,23 @@ function App() {
             </div>
           </div>
           
-          <button
-            onClick={toggleDarkMode}
-            className={`p-3 rounded-lg transition-all duration-200 ${
-              isDarkMode 
-                ? 'bg-white/20 text-white hover:bg-white/30' 
-                : 'bg-white/80 text-gray-700 hover:bg-white shadow-md'
-            }`}
-          >
-            {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
-          </button>
+          <div className="flex items-center gap-3">
+            {/* Bolt Badge */}
+            <div className="w-10 h-10">
+              <BoltBadge isDarkMode={isDarkMode} />
+            </div>
+            
+            <button
+              onClick={toggleDarkMode}
+              className={`p-3 rounded-lg transition-all duration-200 ${
+                isDarkMode 
+                  ? 'bg-white/20 text-white hover:bg-white/30' 
+                  : 'bg-white/80 text-gray-700 hover:bg-white shadow-md'
+              }`}
+            >
+              {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
+          </div>
         </header>
 
         {/* Mode Selector */}
@@ -129,7 +137,24 @@ function App() {
 
         {/* Footer */}
         <footer className={`mt-12 text-center text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-          <p>© 2025 All-in-One Calculator. Built with React, TypeScript & Tailwind CSS.</p>
+          <div className="flex items-center justify-center gap-2 mb-2">
+            <p>© 2025 All-in-One Calculator. Built with React, TypeScript & Tailwind CSS.</p>
+            <span className="text-gray-500">•</span>
+            <div className="flex items-center gap-1">
+              <span>Powered by</span>
+              <div className="w-4 h-4">
+                <BoltBadge isDarkMode={isDarkMode} />
+              </div>
+              <a 
+                href="https://bolt.new/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className={`hover:underline ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`}
+              >
+                Bolt.new
+              </a>
+            </div>
+          </div>
           <p className="mt-1">Professional-grade calculator suite for education, business, and personal use.</p>
         </footer>
       </div>
